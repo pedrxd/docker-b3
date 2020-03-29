@@ -18,9 +18,6 @@ If no b3.xml exist, a new one will be created using the environment values.
 
 On default configuration logs are read from **/var/log/games.log**
 
-## docker run
-`docker run -ti -v /your/config/path:/config -v /yourlog/log.log:/var/log/games.log --rm pedrxd/bigbrotherbot`
-
 ## Environment
 `B3_PARSER`: *default: iourt43*
 
@@ -35,3 +32,40 @@ On default configuration logs are read from **/var/log/games.log**
 `B3_GAMEIP`: *default: 127.0.0.1*
 
 `B3_GAMEPORT`: *default: 27960*
+
+## Docker-compose example
+This is a example for UrbanTerror. Remember to create games.log file before run docker-compose.
+
+```bash
+mkdir -p ./urbanterror/q3ut4 &&
+touch ./urbanterror/q3ut4/games.log
+ ```
+
+```yaml
+version: '3'
+networks:
+  backend:
+services:
+  urbanterror:
+    image: pedrxd/urbanterror
+    restart: always
+    ports:
+      - 27960:27960/udp
+    networks:
+      backend:
+    environment:
+      - URT_RCONPASSWORD=yourpassword
+    volumes:
+      - ./urbanterror:/config
+  b3:
+    image: pedrxd/bigbrotherbot
+    restart: always
+    networks:
+      backend:
+    environment:
+      - B3_RCONPASSWORD=yourpassword
+      - B3_GAMEIP=urbanterror
+    volumes:
+     - ./urbanterror/q3ut4/games.log:/var/log/games.log:ro
+     - ./b3:/config
+```
