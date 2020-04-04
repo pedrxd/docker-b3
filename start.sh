@@ -2,7 +2,7 @@
 
 if [ ! -e /config/b3.xml ];  then
   echo "Server config not found, using the default one..."
-  mkdir /config
+  mkdir -p /config
   envsubst < /opt/b3/b3-docker.xml > /config/b3.xml
 fi
 
