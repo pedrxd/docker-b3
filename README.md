@@ -33,18 +33,17 @@ On default configuration logs are read from **/var/log/games.log**
 
 `B3_GAMEPORT`: *default: 27960*
 
-## Docker-compose example
-This is a example for UrbanTerror. Remember to create games.log file before run docker-compose.
+`B3_GAMELOG`: *default: /var/log/games.log*
 
-```bash
-mkdir -p ./urbanterror/q3ut4 &&
-touch ./urbanterror/q3ut4/games.log
- ```
+## Docker-compose example
+This is a example for UrbanTerror.
 
 ```yaml
 version: '3'
+
 networks:
   backend:
+
 services:
   urbanterror:
     image: pedrxd/urbanterror
@@ -56,7 +55,7 @@ services:
     environment:
       - URT_RCONPASSWORD=yourpassword
     volumes:
-      - ./urbanterror:/urtconfig
+      - 'urtconfig:/urtconfig'
   b3:
     image: pedrxd/bigbrotherbot
     restart: always
@@ -65,7 +64,10 @@ services:
     environment:
       - B3_RCONPASSWORD=yourpassword
       - B3_GAMEIP=urbanterror
+      - B3_GAMELOG=/urtconfig/q3ut4/games.log
     volumes:
-     - ./urbanterror/q3ut4/games.log:/var/log/games.log:ro
-     - ./b3:/b3config
+      - 'urtconfig:/urtconfig'
+
+volumes:
+  urtconfig:
 ```
