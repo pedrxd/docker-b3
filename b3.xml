@@ -46,7 +46,7 @@
         <!-- The port the server is running on -->
         <set name="port">${B3_GAMEPORT}</set>
         <!-- The gameserver generates a logfile, put the path and name here (very important !) -->
-        <set name="game_log">/var/log/games.log</set>
+        <set name="game_log">${B3_GAMELOG}</set>
         <!-- If you want to run b3 on a different computer than where your server reside (remote access to the gamelog),
              you can connect via ftp or http by using the following syntax:
                 <set name="game_log">ftp://username:password@serverhost/path/to/games_mp.log</set>

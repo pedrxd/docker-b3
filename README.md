@@ -4,9 +4,9 @@ Runs current latest head from master at https://github.com/BigBrotherBot/big-bro
 Supports sqlite database as well as an external MariaDB/MySQL database.
 
 # Usage
-Create `config` folder with following folder structure:
+Create `b3config` folder with following folder structure:
 ```
-/config
+/b3config
 ├── conf
 ├── extplugins
 ├── parsers
@@ -56,7 +56,7 @@ services:
     environment:
       - URT_RCONPASSWORD=yourpassword
     volumes:
-      - ./urbanterror:/config
+      - ./urbanterror:/urtconfig
   b3:
     image: pedrxd/bigbrotherbot
     restart: always
@@ -67,5 +67,5 @@ services:
       - B3_GAMEIP=urbanterror
     volumes:
      - ./urbanterror/q3ut4/games.log:/var/log/games.log:ro
-     - ./b3:/config
+     - ./b3:/b3config
 ```
