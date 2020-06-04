@@ -56,7 +56,7 @@ services:
     environment:
       - URT_RCONPASSWORD=yourpassword
     volumes:
-      - 'urtconfig:/urtconfig'
+      - 'urtlog:/urtconfig/q3ut4/log'
   b3:
     image: pedrxd/bigbrotherbot
     restart: always
@@ -65,10 +65,10 @@ services:
     environment:
       - B3_RCONPASSWORD=yourpassword
       - B3_GAMEIP=urbanterror
-      - B3_GAMELOG=/urtconfig/q3ut4/games.log
+      - B3_GAMELOG=/log/games.log
     volumes:
-      - 'urtconfig:/urtconfig'
+      - 'urtlog:/log'
 
 volumes:
-  urtconfig:
+  urtlog:
 ```
