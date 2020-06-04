@@ -17,16 +17,10 @@ RUN apt-get update && apt-get dist-upgrade -yq && \
 WORKDIR /opt
 
 RUN git clone https://github.com/BigBrotherBot/big-brother-bot.git /opt/b3 && \
-    mv /opt/b3/b3/conf /opt/b3/b3/.conf && \
-    mv /opt/b3/b3/extplugins /opt/b3/b3/.extplugins && \
-    mv /opt/b3/b3/parsers /opt/b3/b3/.parsers && \
     pip install -r /opt/b3/requirements.txt
 
 ADD b3.xml /opt/b3/b3-docker.xml
 ADD b3.sh /opt/b3.sh
 RUN chmod +x /opt/b3.sh
 
-VOLUME b3config
-
 ENTRYPOINT ["/opt/b3.sh"]
-CMD ["--help"]

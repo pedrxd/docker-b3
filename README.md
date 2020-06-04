@@ -4,15 +4,16 @@ Runs current latest head from master at https://github.com/BigBrotherBot/big-bro
 Supports sqlite database as well as an external MariaDB/MySQL database.
 
 # Usage
-Create `b3config` folder with following folder structure:
+B3 folder has the following structure:
 ```
-/b3config
-├── conf
-├── extplugins
-├── parsers
+/opt/b3/
+├── b3
+│   ├── conf
+│   ├── extplugins
+│   ├── parsers
 └── b3.xml
+
 ```
-All folders are optional, i.e. if you don't use custom parsers, you don't have to create the directory `parsers` and the default parsers from the Big Brother Bot repo will be used. However, if you *do* create the folder, make sure to add *ALL* parsers you use, not just the custom ones.
 
 If no b3.xml exist, a new one will be created using the environment values.
 
